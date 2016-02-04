@@ -1,0 +1,12 @@
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nocqrs.sample\bin\Debug\nocqrs.sample.exe.config
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nocqrs.sample\obj\Debug\nocqrs.sample.csprojResolveAssemblyReference.cache
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nocqrs.sample\bin\Debug\nocqrs.sample.exe
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nocqrs.sample\bin\Debug\nocqrs.sample.pdb
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nocqrs.sample\bin\Debug\nosqr.api.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nocqrs.sample\bin\Debug\sample.domain.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nocqrs.sample\bin\Debug\nosqr.api.pdb
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nocqrs.sample\bin\Debug\sample.domain.pdb
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nocqrs.sample\obj\Debug\nocqrs.sample.exe
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nocqrs.sample\obj\Debug\nocqrs.sample.pdb
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nocqrs.sample\bin\Debug\Autofac.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nocqrs.sample\bin\Debug\Autofac.xml
