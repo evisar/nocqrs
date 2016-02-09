@@ -54,8 +54,6 @@
     <Compile Include="DomainContainerExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TransferTo.cs" />
-    <Compile Include="_logger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -65,6 +63,10 @@
     <ProjectReference Include="..\nosqr.api\nosqr.api.csproj">
       <Project>{445a639f-7140-4f3d-9867-3e47d8f520a2}</Project>
       <Name>nosqr.api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\sample.domain.cqrs\sample.domain.cqrs.csproj">
+      <Project>{72af9a75-cef5-4b53-8a3f-d24e56aa1a06}</Project>
+      <Name>sample.domain.cqrs</Name>
     </ProjectReference>
     <ProjectReference Include="..\sample.domain\sample.domain.csproj">
       <Project>{124cad3a-c194-4242-a816-d6dd794daefc}</Project>

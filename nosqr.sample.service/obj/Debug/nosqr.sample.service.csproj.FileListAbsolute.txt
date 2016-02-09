@@ -1,0 +1,16 @@
+C:\Users\velmazi\Documents\nocqrs\nosqr.sample.service\bin\Debug\nosqr.sample.service.exe.config
+C:\Users\velmazi\Documents\nocqrs\nosqr.sample.service\bin\Debug\nosqr.sample.service.exe
+C:\Users\velmazi\Documents\nocqrs\nosqr.sample.service\bin\Debug\nosqr.sample.service.pdb
+C:\Users\velmazi\Documents\nocqrs\nosqr.sample.service\bin\Debug\sample.domain.dll
+C:\Users\velmazi\Documents\nocqrs\nosqr.sample.service\bin\Debug\sample.domain.pdb
+C:\Users\velmazi\Documents\nocqrs\nosqr.sample.service\obj\Debug\nosqr.sample.service.csprojResolveAssemblyReference.cache
+C:\Users\velmazi\Documents\nocqrs\nosqr.sample.service\obj\Debug\nosqr.sample.service.exe
+C:\Users\velmazi\Documents\nocqrs\nosqr.sample.service\obj\Debug\nosqr.sample.service.pdb
+C:\Users\velmazi\Documents\nocqrs\nosqr.sample.service\bin\Debug\nosqr.api.dll
+C:\Users\velmazi\Documents\nocqrs\nosqr.sample.service\bin\Debug\Castle.Core.dll
+C:\Users\velmazi\Documents\nocqrs\nosqr.sample.service\bin\Debug\Autofac.dll
+C:\Users\velmazi\Documents\nocqrs\nosqr.sample.service\bin\Debug\nosqr.api.pdb
+C:\Users\velmazi\Documents\nocqrs\nosqr.sample.service\bin\Debug\Castle.Core.xml
+C:\Users\velmazi\Documents\nocqrs\nosqr.sample.service\bin\Debug\Autofac.xml
+C:\Users\velmazi\Documents\nocqrs\nosqr.sample.service\bin\Debug\sample.domain.cqrs.dll
+C:\Users\velmazi\Documents\nocqrs\nosqr.sample.service\bin\Debug\sample.domain.cqrs.pdb

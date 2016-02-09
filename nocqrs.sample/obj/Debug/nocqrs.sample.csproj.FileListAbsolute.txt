@@ -24,3 +24,5 @@ C:\Users\velmazi\Documents\nocqrs\nocqrs.sample\bin\Debug\Autofac.xml
 C:\Users\velmazi\Documents\nocqrs\nocqrs.sample\obj\Debug\nocqrs.sample.csprojResolveAssemblyReference.cache
 C:\Users\velmazi\Documents\nocqrs\nocqrs.sample\bin\Debug\Castle.Core.dll
 C:\Users\velmazi\Documents\nocqrs\nocqrs.sample\bin\Debug\Castle.Core.xml
+C:\Users\velmazi\Documents\nocqrs\nocqrs.sample\bin\Debug\sample.domain.cqrs.dll
+C:\Users\velmazi\Documents\nocqrs\nocqrs.sample\bin\Debug\sample.domain.cqrs.pdb

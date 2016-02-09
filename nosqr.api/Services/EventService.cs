@@ -23,7 +23,7 @@ namespace nosqr.api.Services
         }
 
         List<Delegate> _subscribers = new List<Delegate>();
-        public void Publish<TEvent>(TEvent @event) where TEvent : IEvent
+        public virtual void Publish<TEvent>(TEvent @event) where TEvent : IEvent
         {
             foreach (var action in _subscribers)
             {
@@ -34,7 +34,7 @@ namespace nosqr.api.Services
             }
         }
 
-        public IDisposable Subscribe<TEvent>(Action<TEvent> action) where TEvent : IEvent
+        public virtual IDisposable Subscribe<TEvent>(Action<TEvent> action) where TEvent : IEvent
         {
             _subscribers.Add(action);
             return new EventSubscription(() => _subscribers.Remove(action));

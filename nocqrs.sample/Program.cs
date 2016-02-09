@@ -4,6 +4,7 @@ using nosqr.api;
 using nosqr.api.Aspects;
 using nosqr.api.Services;
 using sample.domain;
+using sample.domain.cqrs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
@@ -28,7 +29,8 @@ namespace nocqrs.sample
 
             //bootstrap everything
             var builder = new ContainerBuilder();
-            builder.RegisterType<EventService>().As<IEventService>();
+            var fbs = new FileEventService("C:\\bus");
+            builder.RegisterInstance<IEventService>(fbs);
             builder.RegisterType<ConsoleLogger>().As<ILogger>();
             builder.RegisterGeneric(typeof(LoggingAspect<>)).As(typeof(IAspect<>));
             builder.RegisterGeneric(typeof(TransactionAspect<>)).As(typeof(IAspect<>));
@@ -53,7 +55,7 @@ namespace nocqrs.sample
             //register/subscribe all commands with dmain handlers
             foreach(var cmd in commands)
             {
-                var createHandler = typeof(DomainContainerExtensions).GetMethod("CreateHandler", BindingFlags.Public | BindingFlags.Static).MakeGenericMethod(cmd);
+                var createHandler = typeof(DomainServicesExtensions).GetMethod("CreateHandler", BindingFlags.Public | BindingFlags.Static).MakeGenericMethod(cmd);
                 var handler = createHandler.Invoke(null, new[] { container });
 
                 var subscribe = typeof(EventService).GetMethod("Subscribe").MakeGenericMethod(cmd);
@@ -72,7 +74,7 @@ namespace nocqrs.sample
             var locationTo = new Location();
 
             //cqrs method publish 
-            var command = new TransferTo(sale, locationTo);
+            var command = new TransferTo { Model = sale, Location = locationTo };
             _bus.Publish(command);
 
             System.Console.ReadLine();

@@ -7,17 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace nocqrs.sample
+namespace sample.domain.cqrs
 {
     [Aspect(typeof(LoggingAspect<>))]
     [Aspect(typeof(TransactionAspect<>))]
-    public class TransferTo : Command<SaleTransfer, Sale>
+    public class TransferTo : ICommand<SaleTransfer, Sale>
     {
-        public Location Location { get; private set; }
+        public Sale Model { get; set; }
+        public Location Location { get; set; }
 
-        public TransferTo(Sale sale, Location location):base(sale, location)
+        public object[] Arguments
         {
-            this.Location = location;
+            get { return new []{ this.Location}; }
         }
     }
 }
