@@ -3,3 +3,8 @@ C:\Users\visar.elmazi\Documents\GitHub\nocqrs\sample.domain\bin\Debug\sample.dom
 C:\Users\visar.elmazi\Documents\GitHub\nocqrs\sample.domain\obj\Debug\sample.domain.csprojResolveAssemblyReference.cache
 C:\Users\visar.elmazi\Documents\GitHub\nocqrs\sample.domain\obj\Debug\sample.domain.dll
 C:\Users\visar.elmazi\Documents\GitHub\nocqrs\sample.domain\obj\Debug\sample.domain.pdb
+C:\Users\velmazi\Documents\nocqrs\sample.domain\bin\Debug\sample.domain.dll
+C:\Users\velmazi\Documents\nocqrs\sample.domain\bin\Debug\sample.domain.pdb
+C:\Users\velmazi\Documents\nocqrs\sample.domain\obj\Debug\sample.domain.dll
+C:\Users\velmazi\Documents\nocqrs\sample.domain\obj\Debug\sample.domain.pdb
+C:\Users\velmazi\Documents\nocqrs\sample.domain\obj\Debug\sample.domain.csprojResolveAssemblyReference.cache

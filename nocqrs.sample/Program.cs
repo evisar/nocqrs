@@ -1,78 +1,81 @@
 ﻿using Autofac;
+using Castle.Core.Logging;
 using nosqr.api;
+using nosqr.api.Aspects;
 using nosqr.api.Services;
 using sample.domain;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition.Hosting;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace nocqrs.sample
 {
-    public static class Program
+    public class Program
     {
-        static readonly IEventService _bus = new EventService();
+        static IEventService _bus;
 
-        public class TransferTo : Command<SaleTransfer, Sale>
-        {
-            public Location Location { get; private set; }
-            public TransferTo(Sale sale, Location location):base(sale, location)
-            {
-                Location = location;
-            }
-        }
-
-        public static IDisposable Subscribe<TEvent>(this IEventService bus)
-            where TEvent : IEvent
-        {
-            var eventType = typeof(TEvent);
-            var featureType = eventType.BaseType.GetGenericArguments().FirstOrDefault();
-            var entityType = eventType.BaseType.GetGenericArguments().Skip(1).FirstOrDefault();
-
-            //cqrs method dyanmic subscribe 
-            return
-                bus.Subscribe<TEvent>(x =>
-                {
-                    var operation = featureType.GetMethod(eventType.Name);
-                    dynamic cmd = x;
-                    var feature = Activator.CreateInstance(featureType, cmd.Model);
-                    operation.Invoke(feature, cmd.Arguments);
-                });
-        }
-
+        #region Bootstrap Bus, container, commands and handlers
         static Program()
         {
-            //subscribe explicitly with an action
-            _bus.Subscribe<TransferTo>(x =>
-                {
-                    var transfer = new SaleTransfer(x.Model);
-                    transfer.TransferTo(x.Location);
-                });
+            //discover types
+            new DirectoryCatalog(".");
 
+            //bootstrap everything
+            var builder = new ContainerBuilder();
+            builder.RegisterType<EventService>().As<IEventService>();
+            builder.RegisterType<ConsoleLogger>().As<ILogger>();
+            builder.RegisterGeneric(typeof(LoggingAspect<>)).As(typeof(IAspect<>));
+            builder.RegisterGeneric(typeof(TransactionAspect<>)).As(typeof(IAspect<>));
+            
+            //find and register all features
+            var features = from feat in AppDomain.CurrentDomain.GetAssemblies().SelectMany( a=> a.GetTypes())
+                          where !feat.IsInterface && !feat.IsAbstract
+                          where (from @if in feat.GetInterfaces() where @if.IsGenericType select @if.GetGenericTypeDefinition()).FirstOrDefault() == typeof(IFeature<>)
+                          select feat;
+            builder.RegisterTypes(features.ToArray());
 
-            //subscribe implicitely with reflection
-            //assuming a feature is created from transfer base type
-            //passing model and arguments with reflection invoke
-            _bus.Subscribe<TransferTo>();
+            var container = builder.Build();
+
+            _bus = container.Resolve<IEventService>();
+            var logger = container.Resolve<ILogger>();
+
+            //find all commands
+            var commands = from cmd in AppDomain.CurrentDomain.GetAssemblies().SelectMany( a=> a.GetTypes())
+                          where !cmd.IsInterface && !cmd.IsAbstract && typeof(ICommand).IsAssignableFrom(cmd)
+                          select cmd;
+
+            //register/subscribe all commands with dmain handlers
+            foreach(var cmd in commands)
+            {
+                var createHandler = typeof(DomainContainerExtensions).GetMethod("CreateHandler", BindingFlags.Public | BindingFlags.Static).MakeGenericMethod(cmd);
+                var handler = createHandler.Invoke(null, new[] { container });
+
+                var subscribe = typeof(EventService).GetMethod("Subscribe").MakeGenericMethod(cmd);
+                subscribe.Invoke(_bus, new []{handler});
+            }
         }
-
+        #endregion
+        
+        /// <summary>
+        /// Pub/Sub example of a CQRS command
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             var sale = new Sale();
             var locationTo = new Location();
 
-            //direct method execute - 1 call
-            var transfer = new SaleTransfer(sale);
-            transfer.TransferTo(locationTo);
-            
-            //cqrs method publish - 2 calls     
-            var command = new TransferTo(sale, locationTo);            
+            //cqrs method publish 
+            var command = new TransferTo(sale, locationTo);
             _bus.Publish(command);
 
-            //assert that transfer was called 3 times
-            Debug.Assert(SaleTransfer.TimesCalled == 3);
+            System.Console.ReadLine();
         }
     }
 }

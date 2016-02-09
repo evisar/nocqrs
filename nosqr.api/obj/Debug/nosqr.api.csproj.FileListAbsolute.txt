@@ -5,3 +5,12 @@ C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\obj\Debug\nosqr.api.pdb
 C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\bin\Debug\sample.domain.dll
 C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\bin\Debug\sample.domain.pdb
 C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\obj\Debug\nosqr.api.csprojResolveAssemblyReference.cache
+C:\Users\velmazi\Documents\nocqrs\nosqr.api\bin\Debug\nosqr.api.dll
+C:\Users\velmazi\Documents\nocqrs\nosqr.api\bin\Debug\nosqr.api.pdb
+C:\Users\velmazi\Documents\nocqrs\nosqr.api\bin\Debug\sample.domain.dll
+C:\Users\velmazi\Documents\nocqrs\nosqr.api\bin\Debug\sample.domain.pdb
+C:\Users\velmazi\Documents\nocqrs\nosqr.api\obj\Debug\nosqr.api.csprojResolveAssemblyReference.cache
+C:\Users\velmazi\Documents\nocqrs\nosqr.api\obj\Debug\nosqr.api.dll
+C:\Users\velmazi\Documents\nocqrs\nosqr.api\obj\Debug\nosqr.api.pdb
+C:\Users\velmazi\Documents\nocqrs\nosqr.api\bin\Debug\Castle.Core.dll
+C:\Users\velmazi\Documents\nocqrs\nosqr.api\bin\Debug\Castle.Core.xml

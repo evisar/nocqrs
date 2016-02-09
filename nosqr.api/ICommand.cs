@@ -21,7 +21,7 @@ namespace nosqr.api
             this.Arguments = args;
         }
     }
-    public interface ICommand<TFeature, TEntity> : IEvent
+    public interface ICommand<TFeature, TEntity> : ICommand
         where TFeature: IFeature<TEntity>
         where TEntity: IEntity
     {
