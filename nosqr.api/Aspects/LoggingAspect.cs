@@ -24,13 +24,13 @@ namespace nosqr.api.Aspects
                 var type = typeof(T);
                 try
                 {
-                    _logger.Info(string.Format("Entering: {0}", type.FullName));
+                    //_logger.Info(string.Format("Entering: {0}", type.FullName));
                     x(y);
-                    _logger.Info(string.Format("Finishing: {0}", type.FullName));
+                    //_logger.Info(string.Format("Finishing: {0}", type.FullName));
                 }
                 catch (Exception ex)
                 {
-                    _logger.Error(string.Format("Error: {0}", type.FullName), ex);
+                    //_logger.Error(string.Format("Error: {0}", type.FullName), ex);
                     throw;
                 }
             };

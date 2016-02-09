@@ -8,8 +8,6 @@ namespace sample.domain
 {
     public class SaleTransfer: IFeature<Sale>
     {
-        public static int TimesCalled = 0;
-
         readonly Sale _sale;
         public SaleTransfer(Sale sale)
         {
@@ -18,7 +16,7 @@ namespace sample.domain
         public void TransferTo(Location targetLocation)
         {
             _sale.Location = targetLocation;
-            TimesCalled++;
-        }
+            //System.Console.WriteLine("Sale {0} has been transfered to location {1}", _sale.GetHashCode(), targetLocation.GetHashCode());
+        }   
     }
 }

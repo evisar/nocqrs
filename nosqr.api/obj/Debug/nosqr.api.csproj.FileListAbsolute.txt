@@ -16,3 +16,7 @@ C:\Users\velmazi\Documents\nocqrs\nosqr.api\bin\Debug\Castle.Core.dll
 C:\Users\velmazi\Documents\nocqrs\nosqr.api\bin\Debug\Castle.Core.xml
 C:\Users\velmazi\Documents\nocqrs\nosqr.api\bin\Debug\Autofac.dll
 C:\Users\velmazi\Documents\nocqrs\nosqr.api\bin\Debug\Autofac.xml
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\bin\Debug\Autofac.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\bin\Debug\Castle.Core.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\bin\Debug\Autofac.xml
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\bin\Debug\Castle.Core.xml

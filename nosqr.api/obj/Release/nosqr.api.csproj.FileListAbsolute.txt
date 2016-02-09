@@ -1,0 +1,11 @@
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\bin\Release\nosqr.api.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\bin\Release\nosqr.api.pdb
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\bin\Release\Autofac.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\bin\Release\Castle.Core.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\bin\Release\sample.domain.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\bin\Release\sample.domain.pdb
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\bin\Release\Autofac.xml
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\bin\Release\Castle.Core.xml
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\obj\Release\nosqr.api.csprojResolveAssemblyReference.cache
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\obj\Release\nosqr.api.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.api\obj\Release\nosqr.api.pdb

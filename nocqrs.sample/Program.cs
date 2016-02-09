@@ -13,6 +13,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Transactions;
 
 namespace nocqrs.sample
@@ -29,8 +30,8 @@ namespace nocqrs.sample
 
             //bootstrap everything
             var builder = new ContainerBuilder();
-            var fbs = new FileEventService("C:\\bus");
-            builder.RegisterInstance<IEventService>(fbs);
+
+            builder.RegisterType<EventService>().As<IEventService>();
             builder.RegisterType<ConsoleLogger>().As<ILogger>();
             builder.RegisterGeneric(typeof(LoggingAspect<>)).As(typeof(IAspect<>));
             builder.RegisterGeneric(typeof(TransactionAspect<>)).As(typeof(IAspect<>));
@@ -45,25 +46,29 @@ namespace nocqrs.sample
             var container = builder.Build();
 
             _bus = container.Resolve<IEventService>();
+
             var logger = container.Resolve<ILogger>();
 
             //find all commands
-            var commands = from cmd in AppDomain.CurrentDomain.GetAssemblies().SelectMany( a=> a.GetTypes())
-                          where !cmd.IsInterface && !cmd.IsAbstract && typeof(ICommand).IsAssignableFrom(cmd)
-                          select cmd;
+            //var commands = from cmd in AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes())
+            //               where !cmd.IsInterface && !cmd.IsAbstract && typeof(ICommand).IsAssignableFrom(cmd)
+            //               select cmd;
 
-            //register/subscribe all commands with dmain handlers
-            foreach(var cmd in commands)
-            {
-                var createHandler = typeof(DomainServicesExtensions).GetMethod("CreateHandler", BindingFlags.Public | BindingFlags.Static).MakeGenericMethod(cmd);
-                var handler = createHandler.Invoke(null, new[] { container });
+            ////register/subscribe all commands with dmain handlers
+            //foreach (var cmd in commands)
+            //{
+            //    var createHandler = typeof(DomainServicesExtensions).GetMethod("CreateHandler", BindingFlags.Public | BindingFlags.Static).MakeGenericMethod(cmd);
+            //    var handler = createHandler.Invoke(null, new[] { container });
 
-                var subscribe = typeof(EventService).GetMethod("Subscribe").MakeGenericMethod(cmd);
-                subscribe.Invoke(_bus, new []{handler});
-            }
+            //    var subscribe = typeof(EventService).GetMethod("Subscribe").MakeGenericMethod(cmd);
+            //    subscribe.Invoke(_bus, new[] { handler });
+            //}            
         }
         #endregion
-        
+
+        static Stopwatch _sw = Stopwatch.StartNew();
+        static int _count = 0;
+
         /// <summary>
         /// Pub/Sub example of a CQRS command
         /// </summary>
@@ -73,11 +78,35 @@ namespace nocqrs.sample
             var sale = new Sale();
             var locationTo = new Location();
 
+
+            
+            Action<TransferTo> transferAction = x =>
+                {
+                    var transfer = new SaleTransfer(x.Model);
+                    transfer.TransferTo(x.Location);
+                };
+
+            _bus.Subscribe<TransferTo>(transferAction);
+
             //cqrs method publish 
             var command = new TransferTo { Model = sale, Location = locationTo };
-            _bus.Publish(command);
 
-            System.Console.ReadLine();
+
+            var timer = new Timer(1000);
+            timer.Enabled = true;
+            timer.Elapsed += timer_Elapsed;
+            while (true)
+            {
+                //if (System.Console.ReadLine().ToUpper() == "Q") return;
+                _bus.Publish(command);
+                //transferAction(command);
+                _count++;
+            }
+        }
+
+        static void timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            Console.WriteLine("Messages per second: {0}", (decimal)_count / (decimal)_sw.Elapsed.TotalSeconds);
         }
     }
 }

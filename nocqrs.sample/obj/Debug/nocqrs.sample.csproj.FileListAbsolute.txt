@@ -26,3 +26,7 @@ C:\Users\velmazi\Documents\nocqrs\nocqrs.sample\bin\Debug\Castle.Core.dll
 C:\Users\velmazi\Documents\nocqrs\nocqrs.sample\bin\Debug\Castle.Core.xml
 C:\Users\velmazi\Documents\nocqrs\nocqrs.sample\bin\Debug\sample.domain.cqrs.dll
 C:\Users\velmazi\Documents\nocqrs\nocqrs.sample\bin\Debug\sample.domain.cqrs.pdb
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nocqrs.sample\bin\Debug\Castle.Core.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nocqrs.sample\bin\Debug\sample.domain.cqrs.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nocqrs.sample\bin\Debug\sample.domain.cqrs.pdb
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nocqrs.sample\bin\Debug\Castle.Core.xml

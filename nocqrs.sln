@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sample.domain", "sample.domain\sample.domain.csproj", "{124CAD3A-C194-4242-A816-D6DD794DAEFC}"
 EndProject
@@ -12,6 +12,17 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nosqr.sample.service", "nosqr.sample.service\nosqr.sample.service.csproj", "{D51655A9-4C7E-40A1-B434-8261AC81D1EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sample.domain.cqrs", "sample.domain.cqrs\sample.domain.cqrs.csproj", "{72AF9A75-CEF5-4B53-8A3F-D24E56AA1A06}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B927465B-4B3F-44ED-9C37-E3082FA27369}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "framework", "framework", "{9EE04B0D-4BB9-4E91-8FF3-3D93F3456798}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "domain", "domain", "{028966C9-8B1C-4735-B977-57D6AB6F0EE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,5 +53,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{445A639F-7140-4F3D-9867-3E47D8F520A2} = {9EE04B0D-4BB9-4E91-8FF3-3D93F3456798}
+		{124CAD3A-C194-4242-A816-D6DD794DAEFC} = {028966C9-8B1C-4735-B977-57D6AB6F0EE7}
+		{72AF9A75-CEF5-4B53-8A3F-D24E56AA1A06} = {028966C9-8B1C-4735-B977-57D6AB6F0EE7}
 	EndGlobalSection
 EndGlobal

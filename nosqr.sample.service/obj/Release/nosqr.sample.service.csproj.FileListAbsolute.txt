@@ -1,0 +1,16 @@
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.sample.service\bin\Release\nosqr.sample.service.exe.config
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.sample.service\bin\Release\nosqr.sample.service.exe
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.sample.service\bin\Release\nosqr.sample.service.pdb
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.sample.service\bin\Release\Autofac.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.sample.service\bin\Release\Castle.Core.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.sample.service\bin\Release\nosqr.api.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.sample.service\bin\Release\sample.domain.cqrs.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.sample.service\bin\Release\sample.domain.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.sample.service\bin\Release\nosqr.api.pdb
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.sample.service\bin\Release\sample.domain.cqrs.pdb
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.sample.service\bin\Release\sample.domain.pdb
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.sample.service\bin\Release\Autofac.xml
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.sample.service\bin\Release\Castle.Core.xml
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.sample.service\obj\Release\nosqr.sample.service.csprojResolveAssemblyReference.cache
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.sample.service\obj\Release\nosqr.sample.service.exe
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\nosqr.sample.service\obj\Release\nosqr.sample.service.pdb

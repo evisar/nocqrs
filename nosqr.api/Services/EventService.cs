@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace nosqr.api.Services
 {
@@ -22,22 +24,26 @@ namespace nosqr.api.Services
             }
         }
 
-        List<Delegate> _subscribers = new List<Delegate>();
+        IDictionary<Type, Delegate> _subscribers = new SortedDictionary<Type, Delegate>();
         public virtual void Publish<TEvent>(TEvent @event) where TEvent : IEvent
         {
-            foreach (var action in _subscribers)
+            var type = typeof(TEvent);
+            if(_subscribers.ContainsKey(type))
             {
-                if (action.GetType().GetGenericArguments().FirstOrDefault() == typeof(TEvent))
-                {
-                    action.DynamicInvoke(@event);
-                }
+                ((Action<TEvent>)_subscribers[type])(@event);
             }
         }
 
         public virtual IDisposable Subscribe<TEvent>(Action<TEvent> action) where TEvent : IEvent
         {
-            _subscribers.Add(action);
-            return new EventSubscription(() => _subscribers.Remove(action));
+            var type = typeof(TEvent);
+            if(!_subscribers.ContainsKey(type))
+            {
+                _subscribers.Add(type, action);
+            }
+            var @delegate = _subscribers[type] as Action<TEvent>;
+            _subscribers[type] = (Action<TEvent>)Delegate.Combine(@delegate, action);                                    
+            return new EventSubscription(() => _subscribers[type] = Delegate.Remove(@delegate, action));
         }
     }
 }

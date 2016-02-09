@@ -1,0 +1,4 @@
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\sample.domain\bin\Release\sample.domain.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\sample.domain\bin\Release\sample.domain.pdb
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\sample.domain\obj\Release\sample.domain.dll
+C:\Users\visar.elmazi\Documents\GitHub\nocqrs\sample.domain\obj\Release\sample.domain.pdb
