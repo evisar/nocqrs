@@ -3,6 +3,7 @@ using Castle.Core.Logging;
 using nosqr.api;
 using nosqr.api.Aspects;
 using nosqr.api.Services;
+using nosqr.api.Services.Channels;
 using sample.domain;
 using sample.domain.cqrs;
 using System;
@@ -12,6 +13,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace nosqr.sample.service
 {
@@ -28,6 +30,7 @@ namespace nosqr.sample.service
 
             //bootstrap everything
             var builder = new ContainerBuilder();
+            builder.RegisterType<FileEventSerializer>().As<IEventSerializer>();
             builder.RegisterType<EventService>().As<IEventService>();
             builder.RegisterType<ConsoleLogger>().As<ILogger>();
             builder.RegisterGeneric(typeof(LoggingAspect<>)).As(typeof(IAspect<>));
@@ -43,6 +46,9 @@ namespace nosqr.sample.service
             var container = builder.Build();
 
             _bus = container.Resolve<IEventService>();
+            _bus.CanRead = true;
+            _bus.CanWrite = false;
+
             var logger = container.Resolve<ILogger>();
 
             //find all commands
@@ -61,13 +67,35 @@ namespace nosqr.sample.service
             }
         }
         #endregion
-        
+
+
+        static TimeSpan _elapsed;
+        static int _read, _write;
 
         static void Main(string[] args)
         {
+            var timer = new Timer(1000);
+            timer.Enabled = true;
+            timer.Elapsed += timer_Elapsed;
+
+            _bus.EnableProgress = true;
+            _bus.OnProgress += _bus_OnProgress;
             System.Console.ReadLine();
 
             
-        }   
+        }
+
+        static void _bus_OnProgress(int arg1, int arg2, TimeSpan arg3)
+        {
+            _read = arg1;
+            _write = arg2;
+            _elapsed = arg3;
+        }
+
+        static void timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            Func<int, decimal> calc = x => _elapsed.TotalSeconds == 0 ? 0 :  (decimal)x / (decimal)_elapsed.TotalSeconds;
+            Console.Title = string.Format("Read: {0:#,#}/s = {1:#,#}, Write: {2:#,#}/s = {3:#,#}", calc(_read), _read, calc(_write), _write);
+        }
     }
 }

@@ -3,6 +3,7 @@ using Castle.Core.Logging;
 using nosqr.api;
 using nosqr.api.Aspects;
 using nosqr.api.Services;
+using nosqr.api.Services.Channels;
 using sample.domain;
 using sample.domain.cqrs;
 using System;
@@ -31,6 +32,7 @@ namespace nocqrs.sample
             //bootstrap everything
             var builder = new ContainerBuilder();
 
+            builder.RegisterType<FileEventSerializer>().As<IEventSerializer>();
             builder.RegisterType<EventService>().As<IEventService>();
             builder.RegisterType<ConsoleLogger>().As<ILogger>();
             builder.RegisterGeneric(typeof(LoggingAspect<>)).As(typeof(IAspect<>));
@@ -46,6 +48,8 @@ namespace nocqrs.sample
             var container = builder.Build();
 
             _bus = container.Resolve<IEventService>();
+            _bus.CanRead = false;
+            _bus.CanWrite = true;
 
             var logger = container.Resolve<ILogger>();
 
@@ -67,7 +71,7 @@ namespace nocqrs.sample
         #endregion
 
         static Stopwatch _sw = Stopwatch.StartNew();
-        static int _count = 0;
+        static int _read=0, _write=0;
 
         /// <summary>
         /// Pub/Sub example of a CQRS command
@@ -95,18 +99,21 @@ namespace nocqrs.sample
             var timer = new Timer(1000);
             timer.Enabled = true;
             timer.Elapsed += timer_Elapsed;
+
             while (true)
             {
                 //if (System.Console.ReadLine().ToUpper() == "Q") return;
                 _bus.Publish(command);
                 //transferAction(command);
-                _count++;
+                _write++;
             }
         }
 
+
         static void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            Console.WriteLine("Messages per second: {0}", (decimal)_count / (decimal)_sw.Elapsed.TotalSeconds);
+            Func<int, decimal> calc = x => (decimal)x / (decimal)_sw.Elapsed.TotalSeconds;
+            Console.Title = string.Format("Read: {0:#,#}/s = {1:#,#}, Write: {2:#,#}/s = {3:#,#}", calc(_read), _read, calc(_write), _write);
         }
     }
 }
